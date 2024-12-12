@@ -5,7 +5,10 @@ export default class OutputView {
     Console.print('다리 건너기 게임을 시작합니다.\n');
   }
   // 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력
-  static printMap() {}
+  static printMap(map) {
+    Console.print(`[ ${map.U.join(' | ')} ]`);
+    Console.print(`[ ${map.D.join(' | ')} ]`);
+  }
 
   // 게임의 최종 결과를 정해진 형식에 맞춰 출력
   static printResult() {}

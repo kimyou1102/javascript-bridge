@@ -17,6 +17,29 @@ export default class Controller {
     for (let i = 0; i < length; i++) {
       const moving = await InputView.readMoving();
       const isMove = bridgeGame.move(moving, bridge[i]);
+      this.printProcess(bridge, bridgeGame, i);
     }
+  }
+
+  printProcess(bridge, bridgeGame, index) {
+    const bridgePosition = bridge.slice(0, index + 1);
+    const map = this.printHelper(bridgePosition, bridgeGame.getResult());
+    OutputView.printMap(map);
+  }
+
+  // eslint-disable-next-line max-lines-per-function
+  printHelper(bridgePosition, userPosition) {
+    const map = { U: [], D: [] };
+    const Opposition = { U: 'D', D: 'U' };
+    userPosition.forEach((position, index) => {
+      map[Opposition[position]].push(' ');
+      if (bridgePosition[index] === position) {
+        map[position].push('O');
+      }
+      if (bridgePosition[index] !== position) {
+        map[position].push('X');
+      }
+    });
+    return map;
   }
 }
