@@ -14,7 +14,7 @@ export default class Controller {
     const bridgeGame = new BridgeGame(bridge);
     await this.crossBridge(bridgeGame, bridge, length);
     const { result, tryCount } = bridgeGame.getGameResult();
-    const isSuccess = result.length === length;
+    const isSuccess = result.length === Number(length);
     const map = this.printHelper(bridge, result);
     OutputView.printResult(map, isSuccess, tryCount);
   }
