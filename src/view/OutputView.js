@@ -11,7 +11,13 @@ export default class OutputView {
   }
 
   // 게임의 최종 결과를 정해진 형식에 맞춰 출력
-  static printResult() {}
+  static printResult(map, isSuccess, count) {
+    const result = { true: '성공', false: '실패' };
+    Console.print('\n최종 게임 결과');
+    this.printMap(map);
+    Console.print(`\n게임 성공 여부: ${result[isSuccess]}`);
+    Console.print(`총 시도한 횟수: ${count}`);
+  }
 
   static printError(message) {
     Console.print(message);

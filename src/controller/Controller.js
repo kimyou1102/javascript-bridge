@@ -5,12 +5,17 @@ import BridgeRandomNumberGenerator from '../BridgeRandomNumberGenerator.js';
 import BridgeGame from '../BridgeGame.js';
 
 export default class Controller {
+  // eslint-disable-next-line max-lines-per-function
   async start() {
     OutputView.printGreeting();
     const length = await InputView.readBridgeSize();
     const bridge = BridgeMaker.makeBridge(length, BridgeRandomNumberGenerator.generate);
     const bridgeGame = new BridgeGame(bridge);
     await this.crossBridge(bridgeGame, bridge, length);
+    const { result, tryCount } = bridgeGame.getGameResult();
+    const isSuccess = result.length === length;
+    const map = this.printHelper(bridge, result);
+    OutputView.printResult(map, isSuccess, tryCount);
   }
 
   async crossBridge(bridgeGame, bridge, length) {
