@@ -4,7 +4,7 @@
 export default class BridgeGame {
   constructor(bridge) {
     this.bridge = bridge;
-    this.tryCount = 0;
+    this.tryCount = 1;
     this.result = [];
   }
 
