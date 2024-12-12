@@ -18,6 +18,20 @@ export default class Controller {
       const moving = await InputView.readMoving();
       const isMove = bridgeGame.move(moving, bridge[i]);
       this.printProcess(bridge, bridgeGame, i);
+      if (!isMove) {
+        return await this.isRetry(bridgeGame, bridge, length);
+      }
+    }
+  }
+
+  async isRetry(bridgeGame, bridge, length) {
+    const gameCommand = await InputView.readGameCommand();
+    if (gameCommand === 'R') {
+      bridgeGame.retry();
+      return await this.crossBridge(bridgeGame, bridge, length);
+    }
+    if (gameCommand === 'Q') {
+      return;
     }
   }
 
